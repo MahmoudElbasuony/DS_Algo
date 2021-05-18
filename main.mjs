@@ -36,3 +36,50 @@
 
 // console.log(priortyQueue.dequeue());
 // console.log(priortyQueue.dequeue());
+
+
+
+// import {LinkeList} from  './LinkedList/LinkedList.js';
+// const list = new LinkeList;
+// list.prepend(2);
+// list.add(1);
+// list.add(2);
+// list.add(1);
+
+// console.log(`removing result : ${list.remove(1)}`);
+// console.log(list.contains(2));
+// console.log(list.contains(1));
+// console.log(`size is ${list.getSize()}`);
+
+// import {DoublyLinkedList} from './DoublyLinkedList/DoublyLinkedList.js';
+
+// const dlist = new DoublyLinkedList;
+
+// dlist.add(1);
+// dlist.add(2);
+// dlist.prepend(2);
+// console.log(dlist.contains(2));
+// dlist.remove(2);
+// console.log(dlist.contains(2));
+// console.log(`size is ${dlist.getSize()}`);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
