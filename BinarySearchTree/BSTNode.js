@@ -44,6 +44,17 @@ export class BSTNode {
     this._right = node;
     if (node) node.setParent(this);
   }
+
+  find(key) {
+    if (key === this.getKey()) return this;
+
+    if (key < this.getKey() && this.hasLeft()) return this.getLeft().find(key);
+
+    if (key > this.getKey() && this.hasRight())
+      return this.getRight().find(key);
+
+    return null;
+  }
   hasRight() {
     return !!this._right;
   }
@@ -55,6 +66,27 @@ export class BSTNode {
   }
   isLeaf() {
     return !this.hasLeft() && !this.hasRight();
+  }
+
+  getLeftHeight() {
+    if (!this.hasLeft()) {
+      return 0;
+    }
+    return this.getLeft().getHeight() + 1;
+  }
+
+  getRightHeight() {
+    if (!this.hasRight()) {
+      return 0;
+    }
+    return this.getRight().getHeight() + 1;
+  }
+
+  getHeight() {
+    return Math.max(this.getLeftHeight(), this.getRightHeight());
+  }
+  getbalanceFactor() {
+    return this.getLeftHeight() - this.getRightHeight();
   }
 
   static checkNodeKey(key) {

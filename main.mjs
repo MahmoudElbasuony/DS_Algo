@@ -74,7 +74,6 @@
 // console.log(bst.contains(-1));
 // console.log(bst.contains(5));
 
-
 // console.log("In Order");
 // bst.traverseInOrder((el) => {
 //   console.log(el);
@@ -91,3 +90,27 @@
 // });
 
 // console.log("size is : " + bst.size());
+
+// import { AVLTree } from "./AVLTree/AVLTree.js";
+// const bst = new AVLTree();
+// bst.insert(3, "c");
+// bst.insert(2, "c");
+// bst.insert(5, "c");
+// bst.insert(4, "c");
+// bst.insert(1, "c");
+
+// bst.delete(2);
+
+// bst.traverseInOrder(console.log);
+
+import { DisjointSet } from "./DisjointSet/disjointset.js";
+const disjoint = new DisjointSet();
+disjoint.makeSet(1);
+disjoint.makeSet(2);
+disjoint.union(1, 2);
+console.log(
+  `{${Object.values(disjoint.items)
+    .map((v) => v.getKey())
+    .join(",")}}`
+);
+console.log(`are {1,2} already in same set ?  ${disjoint.inSameSet(1, 1)}`);
