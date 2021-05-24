@@ -2,6 +2,7 @@ import { Graph } from "../DS/Graph/graph.js";
 import { GraphEdge } from "../DS/Graph/graph_edge.js";
 import { GraphVertex } from "../DS/Graph/graph_vertex.js";
 import { dijkstra } from "./Dijkstra/dijkstra.js";
+import { bellmanFord } from "./Bellman-Ford/bellman_ford.js";
 
 const graph = new Graph(true);
 const vertx1 = new GraphVertex(1, "a");
@@ -18,3 +19,4 @@ graph.addEdge(edge1).addEdge(edge2).addEdge(edge3);
 
 // print shortest path from vertex 1 to all vertices [MST]
 console.log(dijkstra(graph, vertx1));
+console.log(bellmanFord(graph, vertx1));

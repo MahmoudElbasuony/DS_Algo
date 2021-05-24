@@ -101,7 +101,7 @@ export class Graph {
     return Array.from(this._vertices.values());
   }
   getNeighbors(vertex) {
-    if (!vertex && !(vertex instanceof GraphVertex))
+    if (!vertex || !(vertex instanceof GraphVertex))
       throw new Error("addVertex() required graph vertex");
     return vertex.getNeighbors();
   }
