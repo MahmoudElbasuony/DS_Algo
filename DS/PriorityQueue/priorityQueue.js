@@ -1,4 +1,4 @@
-import { MaxHeap } from "./maxHeap.js";
+import { MinHeap } from "./minHeap.js";
 
 /// Assume will use max heap
 export class PriortyQueue {
@@ -8,7 +8,7 @@ export class PriortyQueue {
       throw new Error(".constructor expects a valid priority function");
     }
     this._priortyCB = priorityCB || ((el) => +el);
-    this._heap = new MaxHeap();
+    this._heap = new MinHeap();
   }
 
   enqueue(element, p) {
@@ -33,13 +33,26 @@ export class PriortyQueue {
     return this._getElementWithPriority(this._heap.extractRoot());
   }
 
+  hasValue(item) {
+    return this.findByValue(item).length > 0;
+  }
+
+  findByValue(item) {
+    return this._heap.find(item);
+  }
+
+  changePriority(item, priority) {
+    this._heap.remove(item);
+    this.enqueue(item, priority);
+    return this;
+  }
+
   _getElementWithPriority(node) {
     return {
       priority: node.key,
       element: node.value,
     };
   }
-
 
   size() {
     return this._heap.size();

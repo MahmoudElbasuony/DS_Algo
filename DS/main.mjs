@@ -103,14 +103,73 @@
 
 // bst.traverseInOrder(console.log);
 
-import { DisjointSet } from "./DisjointSet/disjointset.js";
-const disjoint = new DisjointSet();
-disjoint.makeSet(1);
-disjoint.makeSet(2);
-disjoint.union(1, 2);
-console.log(
-  `{${Object.values(disjoint.items)
-    .map((v) => v.getKey())
-    .join(",")}}`
-);
-console.log(`are {1,2} already in same set ?  ${disjoint.inSameSet(1, 1)}`);
+// import { DisjointSet } from "./DisjointSet/disjointset.js";
+// const disjoint = new DisjointSet();
+// disjoint.makeSet(1);
+// disjoint.makeSet(2);
+// disjoint.union(1, 2);
+// console.log(
+//   `{${Object.values(disjoint.items)
+//     .map((v) => v.getKey())
+//     .join(",")}}`
+// );
+// console.log(`are {1,2} already in same set ?  ${disjoint.inSameSet(1, 1)}`);
+
+
+
+// import { Graph } from "./Graph/graph.js";
+// import { GraphEdge } from "./Graph/graph_edge.js";
+// import { GraphVertex } from "./Graph/graph_vertex.js";
+
+// const graph = new Graph(true);
+// const vertx1 = new GraphVertex(1,'a');
+// const vertx2 = new GraphVertex(2,'b');
+// const vertx3 = new GraphVertex(3,'c');
+
+// graph.addVertex(vertx1).addVertex(vertx2).addVertex(vertx3);
+
+// const edge1 = new GraphEdge(vertx1, vertx3, 1);
+// const edge2 = new GraphEdge(vertx1, vertx2, 3);
+// const edge3 = new GraphEdge(vertx2 , vertx3 , 2);
+
+// graph.addEdge(edge1).addEdge(edge2).addEdge(edge3);
+
+
+// console.log(graph.getAdjacencyMatrix());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

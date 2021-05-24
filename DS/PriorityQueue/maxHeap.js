@@ -15,6 +15,12 @@ export class MaxHeap extends Heap {
     return leftChildIndex;
   }
 
+  pairIsInCorrectOrder(firstElementIndx, secondElementIndx) {
+    const firstElementKey = this.getKey(this._nodes[firstElementIndx]);
+    const secondElementKey = this.getKey(this._nodes[secondElementIndx]);
+    return firstElementKey <= secondElementKey;
+  }
+
   static heapify(list) {
     return super.heapify(list, MaxHeap);
   }

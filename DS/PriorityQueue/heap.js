@@ -5,8 +5,51 @@ export class Heap {
 
   addNode(node) {
     this._nodes.push(node);
+    this.heapifyUp();
+    return this;
   }
 
+  remove(item) {
+    const numberOfItemsToRemove = this.find(item).length;
+    for (let i = 0; i < numberOfItemsToRemove; i++) {
+      // We need to find item index to remove each time after removal since
+      // indices are being changed after each heapify process.
+      const indexToRemove = this.find(item).pop();
+
+      // If we need to remove last child in the heap then just remove it.
+      // There is no need to heapify the heap afterwards.
+      if (indexToRemove === this.size() - 1) {
+        this._nodes.pop();
+      } else {
+        // Move last element in heap to the (removed) position.
+        this._nodes[indexToRemove] = this._nodes.pop();
+        const parentItem = this.parent(indexToRemove);
+        const parentIndex = this.getParentIndx(indexToRemove);
+        // If there is no parent or parent is in correct order with the node
+        // we're going to delete then heapify down. Otherwise heapify up.
+        if (this.hasLeftChild(indexToRemove) &&  (!parentItem || this.pairIsInCorrectOrder(parentIndex, indexToRemove))) 
+        {
+          this.heapifyDown(indexToRemove);
+        } 
+        else {
+          this.heapifyUp(indexToRemove);
+        }
+      }
+    }
+
+    return this;
+  }
+
+  pairIsInCorrectOrder(firstElement, secondElement) {
+    throw new Error(`
+      You have to implement heap pair comparision method
+      for ${firstElement} and ${secondElement} values.
+    `);
+  }
+
+  parent(childIndex) {
+    return this._nodes[this.getParentIndx(childIndex)];
+  }
   getParentIndx(childIndx) {
     return Math.floor((childIndx - 1) / 2);
   }
@@ -47,8 +90,8 @@ export class Heap {
     let parentIndx = startIndex;
     let childIndx = this._compareParentChildren(parentIndx);
 
-    while (this.shouldSwap(parentIndx,childIndx)) {
-      this.swap(parentIndx,childIndx);
+    while (this.shouldSwap(parentIndx, childIndx)) {
+      this.swap(parentIndx, childIndx);
       parentIndx = childIndx;
       childIndx = this._compareParentChildren(parentIndx);
     }
@@ -137,7 +180,6 @@ export class Heap {
     return this._nodes[0];
   }
 
-
   fix() {
     for (let i = 0; i < this.size(); i++) {
       this.heapifyUp(i);
@@ -185,6 +227,18 @@ export class Heap {
     this.heapifyDown();
 
     return root;
+  }
+
+  find(item) {
+    const foundItemIndices = [];
+
+    for (let itemIndex = 0; itemIndex < this._nodes.length; itemIndex += 1) {
+      const val = typeof this._nodes[itemIndex] === "object" ? this._nodes[itemIndex].value : this._nodes[itemIndex];
+      if (item === val)
+        foundItemIndices.push(itemIndex);
+    }
+
+    return foundItemIndices;
   }
 
   static isHeapified(list, HeapType) {
