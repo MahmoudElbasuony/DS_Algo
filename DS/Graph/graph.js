@@ -108,4 +108,14 @@ export class Graph {
   getVertexByKey(key) {
     return this._vertices.has(key) ? this._vertices.get(key) : null;
   }
+  getWeight() {
+    let weight = 0;
+    this.getEdges().forEach((edge) => {
+      weight += edge.getWeight();
+    });
+    return weight;
+  }
+  isDirected() {
+    return this._isDirected;
+  }
 }
