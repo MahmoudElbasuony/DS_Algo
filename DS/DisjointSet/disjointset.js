@@ -1,7 +1,6 @@
-import DisjointSetItem from './disjointsetitem.js';
+import DisjointSetItem from "./disjointsetitem.js";
 
 export class DisjointSet {
-
   constructor(keyCallback) {
     this.keyCallback = keyCallback;
     this.items = {};
@@ -19,7 +18,10 @@ export class DisjointSet {
   }
 
   find(itemValue) {
-    const templateDisjointItem = new DisjointSetItem(itemValue, this.keyCallback);
+    const templateDisjointItem = new DisjointSetItem(
+      itemValue,
+      this.keyCallback
+    );
 
     // Try to find item itself;
     const requiredDisjointItem = this.items[templateDisjointItem.getKey()];
@@ -36,7 +38,7 @@ export class DisjointSet {
     const rootKeyB = this.find(valueB);
 
     if (rootKeyA === null || rootKeyB === null) {
-      throw new Error('One or two values are not in sets');
+      throw new Error("One or two values are not in sets");
     }
 
     if (rootKeyA === rootKeyB) {
@@ -47,15 +49,16 @@ export class DisjointSet {
     const rootA = this.items[rootKeyA];
     const rootB = this.items[rootKeyB];
 
-    if (rootA.getRank() < rootB.getRank()) {
+    if (rootA.getCount() < rootB.getCount()) {
       // If rootB's tree is bigger then make rootB to be a new root.
       rootB.addChild(rootA);
-
+      delete this.items[rootKeyA];
       return this;
     }
 
     // If rootA's tree is bigger then make rootA to be a new root.
     rootA.addChild(rootB);
+    delete this.items[rootKeyB];
 
     return this;
   }
@@ -65,9 +68,13 @@ export class DisjointSet {
     const rootKeyB = this.find(valueB);
 
     if (rootKeyA === null || rootKeyB === null) {
-      throw new Error('One or two values are not in sets');
+      throw new Error("One or two values are not in sets");
     }
 
     return rootKeyA === rootKeyB;
+  }
+
+  sizes() {
+    return Object.values(this.items).map(s => s.getCount());
   }
 }

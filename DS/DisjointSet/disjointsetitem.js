@@ -27,7 +27,7 @@ export default class DisjointSetItem {
     }
   
 
-    getRank() {
+    getCount() {
       if (this.getChildren().length === 0) {
         return 0;
       }
@@ -39,7 +39,7 @@ export default class DisjointSetItem {
         rank += 1;
   
         // Also add all children of current child.
-        rank += child.getRank();
+        rank += child.getCount();
       });
   
       return rank;
@@ -47,8 +47,7 @@ export default class DisjointSetItem {
   
     getChildren() {
       return Object.values(this.children);
-    }
-  
+    } 
 
     setParent(parentItem, forceSettingParentChild = true) {
       this.parent = parentItem;
