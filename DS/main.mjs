@@ -103,17 +103,19 @@
 
 // bst.traverseInOrder(console.log);
 
-// import { DisjointSet } from "./DisjointSet/disjointset.js";
-// const disjoint = new DisjointSet();
-// disjoint.makeSet(1);
-// disjoint.makeSet(2);
-// disjoint.union(1, 2);
-// console.log(
-//   `{${Object.values(disjoint.items)
-//     .map((v) => v.getKey())
-//     .join(",")}}`
-// );
-// console.log(`are {1,2} already in same set ?  ${disjoint.inSameSet(1, 1)}`);
+import { DisjointSet } from "./DisjointSet/disjointset.js";
+const disjoint = new DisjointSet();
+disjoint.makeSet(1);
+disjoint.makeSet(2);
+disjoint.makeSet(3);
+
+disjoint.union(1, 2);
+console.log(disjoint.items);
+
+disjoint.union(1, 3);
+
+
+console.log(disjoint.inSameSet(1,3));
 
 
 
