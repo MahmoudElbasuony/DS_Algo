@@ -25,7 +25,7 @@ export class Heap {
         this._nodes[indexToRemove] = this._nodes.pop();
         const parentItem = this.parent(indexToRemove);
         const parentIndex = this.getParentIndx(indexToRemove);
-        // If there is no parent or parent is in correct order with the node
+        // If there is no parent [root] or parent is in correct order with the node
         // we're going to delete then heapify down. Otherwise heapify up.
         if (this.hasLeftChild(indexToRemove) &&  (!parentItem || this.pairIsInCorrectOrder(parentIndex, indexToRemove))) 
         {
